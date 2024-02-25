@@ -5,7 +5,10 @@ module.exports = {
             description: 'disallow the use of the `on` prefix in v-on directive event names',
         },
         fixable: 'code',
-        schema: []
+        schema: [],
+        messages: {
+            noOnPrefix: 'v-on directive name "{{name}}" should not start with the `on` prefix'
+        }
     },
     create(context) {
         return context.parserServices.defineTemplateBodyVisitor({
@@ -18,9 +21,9 @@ module.exports = {
                     if (eventName.startsWith('on-') || eventName.startsWith('on')) {
                         context.report({
                             node: node.argument,
-                            message: 'v-on directive name {{eventName}} should not start with the `on` prefix',
+                            messageId: 'noOnPrefix',
                             data: {
-                                eventName: eventName
+                                name: eventName
                             },
                             fix(fixer) {
                                 const newEventName = eventName.replace(/^on-?/, ''); // Remove both 'on-' and 'on' prefixes

@@ -13,7 +13,7 @@ const rule: TSESLint.RuleModule<messageId> = {
         fixable: 'code',
         schema: [],
         messages: {
-            noOnPrefix: 'v-on directive name "{{eventName}}" should not start with the `on` prefix'
+            noOnPrefix: 'v-on directive name "{{name}}" should not start with the `on` prefix'
         }
     },
     create: (context: TSESLint.RuleContext<messageId, []>) => {
@@ -34,7 +34,7 @@ const rule: TSESLint.RuleModule<messageId> = {
                             node: argument,
                             messageId: 'noOnPrefix',
                             data: {
-                                eventName,
+                                name: eventName
                             },
                             fix(fixer) {
                                 const newEventName = eventName.replace(/^on-?/, ''); // Remove both 'on-' and 'on' prefixes
