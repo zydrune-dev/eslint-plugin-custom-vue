@@ -21,3 +21,7 @@ Edit plugins and rules inside .eslintrc.json to use
         "custom-vue/v-on-no-on-prefix": "error"
     }
 }
+```
+
+Resources:
+https://github.com/vuejs/vue-eslint-parser/tree/master?tab=readme-ov-file#-usage-for-custom-rules--plugins
